@@ -1,0 +1,20 @@
+int ledPin = 13;
+int buttonPin = 2;
+boolean button_present_state = 0;
+boolean button_former_state = 0;
+boolean led_state = LOW;
+
+void setup(){
+  pinMode(buttonPin,INPUT);
+  pinMode(ledPin,OUTPUT);
+  Serial.begin(9600); 
+}
+
+void loop(){
+  button_present_state = digitalRead(buttonPin);
+  if(button_present_state == 1 && button_former_state == 0){
+    led_state = !led_state;
+    digitalWrite(ledPin,led_state);
+  }
+  button_former_state = button_present_state;
+}
